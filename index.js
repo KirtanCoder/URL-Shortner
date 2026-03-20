@@ -2,12 +2,14 @@ const express = require("express")
 const { connectToMongoDB } = require('./connect')
 const urlRoute = require('./routes/url')
 const path = require("path")
-
+const cookieParser = require("cookie-parser") 
 
 //Routes
 const staticRouter = require("./routes/staticRouter")
 const URL = require('./models/url')
 const userRoute = require("./routes/user")
+const {restrictToLoggedinUserOnly} = require('./middlewares/auth')
+
 
 const app = express()
 const port = 8080
@@ -26,6 +28,8 @@ app.set('views',path.resolve("./views"))
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false})) //form ka data support
+app.use(cookieParser());
+
 
 //urls
 app.use("/url", urlRoute);
