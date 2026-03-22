@@ -32,7 +32,7 @@ app.use(cookieParser());
 
 
 //urls
-app.use("/url", urlRoute);
+app.use("/url",restrictToLoggedinUserOnly, urlRoute);
 app.use("/",staticRouter)
 app.use("/user",userRoute)
 
