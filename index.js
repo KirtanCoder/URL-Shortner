@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser")
 const staticRouter = require("./routes/staticRouter")
 const URL = require('./models/url')
 const userRoute = require("./routes/user")
-const {restrictToLoggedinUserOnly} = require('./middlewares/auth')
+const {restrictToLoggedinUserOnly,checkAuth} = require('./middlewares/auth')
 
 
 const app = express()
@@ -31,9 +31,14 @@ app.use(express.urlencoded({extended:false})) //form ka data support
 app.use(cookieParser());
 
 
+app.use((req,res,next)=>{
+
+});
+
+
 //urls
 app.use("/url",restrictToLoggedinUserOnly, urlRoute);
-app.use("/",staticRouter)
+app.use("/",checkAuth,staticRouter)
 app.use("/user",userRoute)
 
 app.get("/url/:shortId", async (req, res) => {
