@@ -31,10 +31,6 @@ app.use(express.urlencoded({extended:false})) //form ka data support
 app.use(cookieParser());
 
 
-app.use((req,res,next)=>{
-
-});
-
 
 //urls
 app.use("/url",restrictToLoggedinUserOnly, urlRoute);
