@@ -28,9 +28,11 @@ async function handleUserLogin(req, res) {
 
     res.cookie("token", token, {   // ✅ name fix
         httpOnly: true,
+        
     });
 
-    return res.redirect("/");
+
+   return res.redirect("/");
 }
 
 module.exports = {
