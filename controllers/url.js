@@ -12,7 +12,10 @@ async function generateNewShortURL(req, res) {
         createdBy: req.user._id,
     });
 
-return res.render("home",{id:shortId})
+    return res.render("home", {
+        id: shortId,
+        user: req.user || null
+    });
    
 }
 

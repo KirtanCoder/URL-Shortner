@@ -4,6 +4,10 @@ const router = express.Router()
 
 router.post("/",handleUserSignup)
 router.post("/login",handleUserLogin)
+router.post("/logout", (req, res) => {
+    res.clearCookie("token");
+    return res.redirect("/login");
+});
 
 
 

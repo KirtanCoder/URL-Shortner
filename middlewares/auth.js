@@ -18,19 +18,24 @@ async function restrictToLoggedinUserOnly(req, res, next) {
 }
 
 async function checkAuth(req, res, next) {
-    const token = req.cookies?.token;   // ✅ cookie se token
+    const token = req.cookies?.token;
 
     if (!token) {
         req.user = null;
+        res.locals.user = null; // ✅ ADD THIS LINE
         return next();
     }
 
     const user = getUser(token);
+
     req.user = user;
+    res.locals.user = user; // ✅ already correct
+
     next();
 }
+
 
 module.exports = {
     restrictToLoggedinUserOnly,
     checkAuth,
-};
+}

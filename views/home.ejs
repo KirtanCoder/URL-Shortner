@@ -6,6 +6,22 @@
     <title>Home Page</title>
   </head>
   <body>
+<div>
+ <nav>
+  <a href="/">Home</a>
+
+  <% if (user) { %>
+      <form action="user/logout" method="POST" style="display:inline;">
+        <button type="submit">Logout</button>
+      </form>
+  <% } else { %>
+      <a href="/login">
+        <button>Login</button>
+      </a>
+  <% } %>
+</nav>
+</div>
+
     <div>
  <h1>URL Shortner</h1>
 <% if (locals.id) { %>

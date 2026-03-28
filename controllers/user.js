@@ -24,9 +24,9 @@ async function handleUserLogin(req, res) {
         });
     }
 
-    const token = setUser(user); // ✅ correct
+    const token = setUser(user); 
 
-    res.cookie("token", token, {   // ✅ name fix
+    res.cookie("token", token, {   
         httpOnly: true,
         
     });
